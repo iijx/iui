@@ -1,0 +1,43 @@
+
+/**
+ *  常用到的功能函数
+ */
+
+// 几种颜色
+.cl_fff {
+    color: #fff !important;
+}
+a.cl_fff:active {
+    color: rgba(255, 255, 255, .2) !important;
+}
+.cl_light {
+    color: rgb(178, 178, 178) !important; // #b2b2b2
+}
+.cl_grey {
+    color: rgb(136, 136, 136) !important; // #888888
+}
+.cl_semi {
+    color: rgb(53, 53, 53) !important;
+}
+.cl_black {
+    color: black !important;
+}
+
+
+.text_center {
+    text-align: center !important;
+}
+.text_left {
+    text-align: left !important;
+}
+.text_right { 
+    text-align: right !important;
+}
+
+.img_widthFix {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
