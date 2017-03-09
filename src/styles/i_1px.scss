@@ -1,0 +1,17 @@
+@mixin set1px ($cl: #777777) {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 1px;
+    border: 1px solid $cl;
+    -webkit-transform-origin: left top;
+            transform-origin: left top;
+    -webkit-transform: scale(.5);
+            transform: scale(.5);
+}
+.i_1px {
+    position: relative;
+    @include set1px();
+}

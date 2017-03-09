@@ -1,4 +1,18 @@
+@import './styles/i_1px.scss';
+@import './font/iconfont.scss';
+
 @import './components/normalize.scss';
 
 @import './components/reset.scss';
 @import './components/function.scss';
+@import './components/i_toast.scss';
+@import './components/i_dialog.scss';
+@import './components/i_cell.scss';
+@import './components/i_btn.scss';
+@import './components/i_radio.scss';
+@import './components/i_checkbox.scss';
+
+
+// 动画效果
+@import './components/i_transition.scss';
+

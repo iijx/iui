@@ -3,11 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> <!-- 指定IE和Chrome使用最新版本渲染当前页面 -->
-    <meta http-equiv="cache-control" content="no-cache"> <!-- 发送请求，与服务器确认该资源是否被更改，如果未被更改，则使用缓存 -->
+    <meta http-equiv="cache-control" content="no-store"> <!-- 发送请求，与服务器确认该资源是否被更改，如果未被更改，则使用缓存 -->
+    <!--<meta http-equiv="cache-control" content="no-cache">  发送请求，与服务器确认该资源是否被更改，如果未被更改，则使用缓存 -->
     <meta name="format-detection" content="telephone=no, address=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title>title</title>
     <link rel="stylesheet" href="../css/iui.min.css">
-    <link rel="stylesheet" href="../css/common.min.css">
+    <!--<link rel="stylesheet" href="../css/co mmon.min.css">-->
 </head>
+<body>
+    <main id="i_container" class="i_container" v-cloak>
+        <i-toast ref="i_toast" :duration="2000"></i-toast>
+        <i-dialog-one :show="isShowToast">
+            dsjf
+        </i-dialog-one>
+        <div style="width: 80%; margin: 0 auto; padding: 20px;">
+            <a href="javascript::" class="i_btn">123</a>
+        </div>
+
+        <i-radio :options="options" title="hello" value="male"></i-radio>
+        <i-checkbox :options="options" :values="['male', 'female']" title="i am a checkbox"></i-checkbox>
+        
+    </main>
+    <!-- 模板部分 -->
+    <!-- toast 提示 -->
+    <template id="tpl_toast">
+        <div class="i_toast_wrap" v-show="isShow">
+            <div class="i_toast_mask"></div>
+            <div class="i_toast">
+                <div class="i_toast_mid">
+                    <slot></slot>
+                    <p>{{toastText}}</p>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- i-dailog-one 弹窗 -->
+    <template id="tpl_dialog_one">
+        <div class="i_dialog_wrap">
+            <transition name="i_fade">
+                <div class="i_mask" v-show="show" @click="hideOnBlur && hide()"></div>
+            </transition>
+            <transition :name="dialogTransition">
+                <div class="i_dialog" v-show="show">
+                    <div class="i_dialog_hd">{{dialogHdText}}</div>
+                    <div class="i_dialog_bd">
+                        <slot></slot>
+                    </div>
+                    <div class="i_dialog_ft">
+                        <a href="javascript:;" @click="onPrimary" class="i_dialog_btn i_dialog_btn_primary cl_main">{{dialogFtText}}</a>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </template>
+    <!-- i-radio -->
+    <template id="tpl_radio">
+        <div class="i_radio_container">
+            <div class="i_radio_title">{{title}}</div>
+            <label v-for="(item, index) of options" class="i_cell i_radio">
+                <div class="i_cell_hd" >
+                    <div class="i_icon_radioable">
+                        <input class="i_radio_input" type="radio" :name="name" value="" @click="updateCurValue(index)">
+                        <i v-show="item === curValue" class="iconfont icon-roundcheckfill" :style="{color: checkedColor}"></i>
+                        <i v-show="item !== curValue" class="iconfont icon-round" :style="{color: uncheckedColor}"></i>
+                    </div>
+                </div>
+                <div class="i_cell_bd">
+                    {{item}}
+                </div>
+            </label>
+        </div>
+    </template>
+    <!-- i-checkbox -->
+    <template id="tpl_checkbox">
+        <div class="i_checkbox_container">
+            <div class="i_checkbox_title">{{title}}</div>
+            <label v-for="(item, index) of options" class="i_cell i_checkbox">
+                <div class="i_cell_hd">
+                    <div class="icon_checkable">
+                        <input class="i_checkbox_input" type="checkbox" :value="item" v-model="curValue">
+                        <i class="iconfont"></i>
+                        <!--<i class="iconfont icon-squarecheckfill"></i>-->
+                    </div>
+                </div>
+                <div class="i_cell_bd i_checkbox_label">
+                    {{item}}
+                </div>
+            </label>
+        </div>
+    </template>
+
+
+    <!-- js部分 -->
+    <script src="../../src/lib/vue.js"></script>
+    <script src="./index.js"></script>
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        var jssdkconfig = JSON.parse("{php echo json_encode($_W['account']['jssdkconfig']);}");
+        jssdkconfig.debug = false;
+        jssdkconfig.jsApiList = [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'showOptionMenu',
+        ];
+        wx.config(jssdkconfig);
+
+        var shareMeta = {
+            imgUrl:"{$_W['attachurl']}{$config['share_img']}",
+            link : "{$_W[siteroot]}app/{php echo $this->createmobileurl(index);}",
+            desc : "{$config['share_desc']}",
+            title : "{$config['share_title']}"
+        };
+         
+        wx.ready(function () {
+            wx.showOptionMenu();
+			wx.onMenuShareAppMessage(shareMeta);
+            wx.onMenuShareTimeline(shareMeta);
+            wx.onMenuShareQQ(shareMeta);
+            wx.onMenuShareWeibo(shareMeta);
+        });
+    </script>-->
+</body>
+</html>

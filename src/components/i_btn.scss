@@ -1,0 +1,21 @@
+.i_btn,.i_btn_around {
+	position: relative;
+	display: block;
+    box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 14px;
+	padding-right: 14px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 2.5em;
+	overflow: hidden;
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
+    color: #fff;
+	background-color: #04be02;
+	border-radius: 5px;
+    &:after {
+        @include set1px()
+    }
+}

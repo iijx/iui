@@ -27,11 +27,16 @@ gulp.task('server', () => {
         }
     })
 });
+gulp.task('reload', () => {
+    browserSync.reload();
+})
 
 
 gulp.task('watch', () => {
     gulp.watch('./src/iui.scss', ['sass']);
     gulp.watch('./src/components/*.scss', ['sass']);
+    gulp.watch('./dist/css/iui.css', ['reload']);
+    gulp.watch('./dist/html/*.html', ['reload']);
 });
 
 gulp.task('default', ['sass', 'watch', 'server']);
